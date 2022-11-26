@@ -1,5 +1,7 @@
 #Сборка
 name: My-Otus-lesson-ci
+env:
+  DEPLOY_PACKAGE : "flask_app_${{ github.sha}}.zip"
 on : 
   push :
     branches : 
