@@ -1,9 +1,9 @@
 #Сборка
 name: My-Otus-lesson-ci
-on  : 
-  push:
-    branches: 
-      - master
+on : 
+  push :
+    branches : 
+      - main
 
 jobs:
   build:
