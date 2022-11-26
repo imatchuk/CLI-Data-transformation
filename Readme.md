@@ -1,4 +1,5 @@
-Status ci - <img src="https://github.com/imatchuk/CLI-Data-transformation/workflows/My-Otus-lesson-ci/badge.svg?branch=master">
+Status ci 
+<img src="https://github.com/imatchuk/CLI-Data-transformation/workflows/My-Otus-lesson-ci/badge.svg?branch=master">
 
 
 Формат экспортера
