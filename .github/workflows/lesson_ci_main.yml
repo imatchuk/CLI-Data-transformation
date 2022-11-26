@@ -1,2 +1,15 @@
-
+#Сборка
 name: My-Otus-lesson-ci
+on  : 
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: alpine
+    steps:
+    - uses: action:/checkout@v1
+    - name: Run
+      run: echo Hello, word!
+  
