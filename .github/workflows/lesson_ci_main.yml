@@ -1,8 +1,5 @@
 #Сборка
 name: My-Otus-lesson-ci
-env:
-  DOKER_LOGIN    : "secrets.DOCKER_USERNAME"
-  DOKER_PASSWORD : "secrets.DOCKER_PASSWORD"
 
 on : 
   push :
@@ -13,16 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: git clone our repo
-      uses: actions/checkout@v1
-    
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ env.DOKER_LOGIN }}
-        password: ${{ env.DOKER_PASSWORD }}
-    
-    - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag cl1ven/otus:latest
-        docker push cl1ven/otus:latest 
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/otus:latest
