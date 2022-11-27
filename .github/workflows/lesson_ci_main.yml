@@ -1,6 +1,5 @@
-#Сборка
+#Сборка и тесты проекта
 name: My-Otus-lesson-ci
-
 on : 
   push :
     branches : 
