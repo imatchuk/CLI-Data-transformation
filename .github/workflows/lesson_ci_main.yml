@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: run docker container
-      run: docker run -d -p 5000:5000 --name otus cl1ven/otus:tagname
+      run: docker run -d -p 5000:5000 --name otus cl1ven/otus:latest
     - name: test port
       run: docker port otus 5000/tcp
     - name: destroy docker container
