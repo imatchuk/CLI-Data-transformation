@@ -13,4 +13,14 @@ jobs:
     steps:
     - name: Run
       run: echo Hello, word!
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: run docker container
+      run: docker run -d -p 5000:5000 --name flask-crud imatchuk/flask-crud:v0.0.1
+    - name: test port
+      run: docker port flask-crud 5000/tcp
+    - name: destroy docker container
+      run: docker rm -f flask-crud
   
