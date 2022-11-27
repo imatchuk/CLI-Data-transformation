@@ -1,6 +1,5 @@
 #Сборка
 name: My-Otus-lesson-ci
-
 env:
   DOKER_LOGIN    : "secrets.DOCKER_USERNAME"
   DOKER_PASSWORD : "secrets.DOCKER_PASSWORD"
