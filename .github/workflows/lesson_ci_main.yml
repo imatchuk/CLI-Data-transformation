@@ -23,7 +23,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/otus:latest
+          tags: latest
   test:
     runs-on: ubuntu-latest
     steps:
