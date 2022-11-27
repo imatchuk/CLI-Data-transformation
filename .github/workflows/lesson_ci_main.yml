@@ -1,7 +1,8 @@
 #Сборка
 name: My-Otus-lesson-ci
 env:
-  DEPLOY_PACKAGE : "flask_app_${{ github.sha}}.zip"
+  DOKER_LOGIN    : "secrets.DOCKER_USERNAME"
+  DOKER_PASSWORD : "secrets.DOCKER_PASSWORD"
 on : 
   push :
     branches : 
@@ -11,16 +12,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Run
-      run: echo Hello, word!
+    - name: git clone our repo
+    - uses: actions/checkout@v1
+    
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ env.DOKER_LOGIN }}
+        password: ${{ env.DOKER_PASSWORD }}
+    
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag cl1ven/otus:latest
+        docker push cl1ven/otus:latest
+  
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    
     - name: run docker container
       run: docker run -d -p 5000:5000 --name otus cl1ven/otus:latest
+    
     - name: test port
       run: docker port otus 5000/tcp
+    
     - name: destroy docker container
       run: docker rm -f otus
   
