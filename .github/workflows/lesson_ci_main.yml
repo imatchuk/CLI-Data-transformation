@@ -1,5 +1,6 @@
 #Сборка
 name: My-Otus-lesson-ci
+
 on : 
   push :
     branches : 
